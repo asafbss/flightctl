@@ -24,7 +24,7 @@ spec:
   - name: output-image
     value: quay.io/redhat-user-workloads/rh-ee-aalbo-tenant/rh-ee-aalbo-tenant-tenant/flightctl-api-main/flightctl-api-main:{{revision}}
   - name: dockerfile
-    value: Dockerfile
+    value: Containerfile.api
   - name: path-context
     value: .
   pipelineSpec:
