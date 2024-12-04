@@ -1,0 +1,52 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/asafbss/flightctl?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-cel-expression: startsWith(target_branch, "release-")
+  name: flightctl-worker-downstream-on-build
+  namespace: rh-ee-aalbo-tenant
+spec:
+  params:
+  - name: git-url
+    value: 'https://github.com/asafbss/flightctl.git'
+  - name: revision
+    value: '{{revision}}'
+  - name: output-image
+    value: quay.io/redhat-user-workloads/rh-ee-aalbo-tenant/flightctl-worker-downstream:dynamic-{{revision}}
+  - name: dockerfile
+    value: Containerfile.worker
+  - name: path-context
+    value: .
+  pipelineSpec:
+    tasks:
+    - name: clone-repository
+      params:
+      - name: url
+        value: $(params.git-url)
+      - name: revision
+        value: $(params.revision)
+      taskRef:
+        name: git-clone
+        kind: Task
+    - name: build-container
+      params:
+      - name: IMAGE
+        value: $(params.output-image)
+      - name: DOCKERFILE
+        value: $(params.dockerfile)
+      - name: CONTEXT
+        value: $(params.path-context)
+      taskRef:
+        name: buildah
+        kind: Task
+    - name: push-container
+      params:
+      - name: IMAGE
+        value: $(params.output-image)
+      taskRef:
+        name: push
+        kind: Task
