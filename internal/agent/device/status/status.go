@@ -27,7 +27,7 @@ func NewManager(
 	executer executer.Executer,
 	log *log.PrefixLogger,
 ) *StatusManager {
-	exporters := newExporters(resourceManager, hookManager, applicationManager, systemdManager, executer, log)
+	exporters := newExporters(resourceManager, applicationManager, systemdManager, executer, log)
 	status := v1alpha1.NewDeviceStatus()
 	return &StatusManager{
 		deviceName: deviceName,
@@ -114,7 +114,7 @@ func (m *StatusManager) Sync(ctx context.Context) error {
 		return nil
 	}
 	if err := m.managementClient.UpdateDeviceStatus(ctx, m.deviceName, *m.device); err != nil {
-		return fmt.Errorf("failed to update device status: %w", err)
+		m.log.Warnf("Failed to update device status: %v", err)
 	}
 	return nil
 }
