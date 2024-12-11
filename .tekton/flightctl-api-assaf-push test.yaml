@@ -10,7 +10,7 @@ metadata:
       event == "push" && target_branch == "assaf-0.5.0"
   labels:
     appstudio.openshift.io/application: >-
-      flightctl-$(target_branch.replace('.', '-'))
+      flightctl-assaf-0-5-0
     appstudio.openshift.io/component: >-
       flightctl-api-assaf-0-5-0
     pipelines.appstudio.openshift.io/type: build
