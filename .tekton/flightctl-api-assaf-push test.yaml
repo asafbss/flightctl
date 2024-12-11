@@ -12,7 +12,7 @@ metadata:
     appstudio.openshift.io/application: >-
       flightctl-$(target_branch.replace('.', '-'))
     appstudio.openshift.io/component: >-
-      flightctl-api-$(target_branch.replace('.', '-'))
+      flightctl-api-assaf-0-5-0
     pipelines.appstudio.openshift.io/type: build
   name: flightctl-api3-assaf-no-on-koko
   namespace: rh-ee-aalbo-tenant
