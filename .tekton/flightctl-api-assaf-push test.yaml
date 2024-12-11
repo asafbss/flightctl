@@ -13,7 +13,7 @@ metadata:
       flightctl-assaf-0-5-0
     appstudio.openshift.io/component: >-
       flightctl-api-assaf-0-5-0
-    appstudio.openshift.io/application3: "{{target_branch}}"
+    appstudio.openshift.io/application3: "{{ body.pull_request.title }}"
     pipelines.appstudio.openshift.io/type: build
   name: flightctl-api3-assaf-no-on-koko
   namespace: rh-ee-aalbo-tenant
