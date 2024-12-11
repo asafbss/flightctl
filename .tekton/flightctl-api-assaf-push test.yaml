@@ -14,7 +14,7 @@ metadata:
     appstudio.openshift.io/component: >-
       flightctl-api-assaf-0-5-0
     pipelines.appstudio.openshift.io/type: build
-  name: flightctl-api-assaf-0-5-0-on-koko
+  name: flightctl-api3-assaf-no-on-koko
   namespace: rh-ee-aalbo-tenant
 spec:
   params:
