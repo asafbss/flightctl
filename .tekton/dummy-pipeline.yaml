@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: test-pipeline
+  labels:
+    build.appstudio.redhat.com/pipeline: "test-pipeline"
+spec:
+  tasks:
+    - name: hello-world
+      taskSpec:
+        steps:
+          - name: echo-message
+            image: ubuntu:latest
+            script: |
+              #!/bin/bash
+              echo "Hello, Konflux! Your pipeline with tekton.dev/v1 is running successfully."
