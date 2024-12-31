@@ -5,12 +5,30 @@ metadata:
   labels:
     build.appstudio.redhat.com/pipeline: "test-pipeline"
 spec:
+  params:
+    - name: SNAPSHOT
+      type: string
+      description: |
+        Spec section of an ApplicationSnapshot resource. Not all fields of the
+        resource are required. A minimal example:
+          {
+            "components": [
+              {
+                "containerImage": "quay.io/example/repo:latest"
+              }
+            ]
+          }
+        Each "containerImage" in the "components" array is validated.
   tasks:
     - name: hello-world
       taskSpec:
+        params:
+          - name: SNAPSHOT
+            type: string
         steps:
           - name: echo-message
             image: ubuntu:latest
             script: |
               #!/bin/bash
               echo "Hello, Konflux! Your pipeline with tekton.dev/v1 is running successfully."
+              echo "Snapshot Parameter: $(params.SNAPSHOT)"
