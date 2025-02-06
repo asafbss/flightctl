@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:39
+FROM registry.fedoraproject.org/fedora:43
 
 RUN dnf install -y make packit golang openssl-devel && \
     dnf clean all && \
