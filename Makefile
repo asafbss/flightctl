@@ -10,9 +10,14 @@ GOARCH := $(shell go env GOARCH)
 
 VERBOSE ?= false
 
-SOURCE_GIT_TAG ?=$(shell git describe --tags --exclude latest)
-SOURCE_GIT_TREE_STATE ?=$(shell ( ( [ ! -d ".git/" ] || git diff --quiet ) && echo 'clean' ) || echo 'dirty')
-SOURCE_GIT_COMMIT ?=$(shell git rev-parse --short "HEAD^{commit}" 2>/dev/null)
+# Function to use a fallback value if the variable is empty
+define ensure_nonempty
+$(if $(strip $(1)),$(1),$(2))
+endef
+
+SOURCE_GIT_TAG := $(call ensure_nonempty,$(SOURCE_GIT_TAG),$(shell git describe --tags --exclude latest 2>/dev/null || echo "v0.0.0"))
+SOURCE_GIT_TREE_STATE := $(call ensure_nonempty,$(SOURCE_GIT_TREE_STATE),$(shell ( ( [ ! -d ".git/" ] || git diff --quiet ) && echo 'clean' ) || echo 'dirty'))
+SOURCE_GIT_COMMIT := $(call ensure_nonempty,$(SOURCE_GIT_COMMIT),$(shell git rev-parse --short HEAD 2>/dev/null || echo "unknown"))
 BIN_TIMESTAMP ?=$(shell date +'%Y%m%d')
 SOURCE_GIT_TAG_NO_V := $(shell echo $(SOURCE_GIT_TAG) | sed 's/^v//')
 MAJOR := $(shell echo $(SOURCE_GIT_TAG_NO_V) | awk -F'[._~-]' '{print $$1}')
