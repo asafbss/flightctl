@@ -62,7 +62,7 @@ require (
 	k8s.io/apimachinery v0.31.1
 	k8s.io/client-go v1.5.2
 	k8s.io/klog/v2 v2.120.1
-	libvirt.org/go/libvirt v1.10003.0
+	libvirt.org/go/libvirt v1.11001.0
 	sigs.k8s.io/yaml v1.4.0
 )
 
