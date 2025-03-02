@@ -1,6 +1,8 @@
 module github.com/flightctl/flightctl
 
-go 1.21
+go 1.22
+
+toolchain go1.22.9
 
 require (
 	github.com/RangelReale/osincli v0.0.0-20160924135400-fababb0555f2
@@ -20,7 +22,7 @@ require (
 	github.com/go-git/go-git/v5 v5.13.0
 	github.com/go-openapi/swag v0.23.0
 	github.com/google/go-cmp v0.6.0
-	github.com/google/go-tpm v0.9.0
+	github.com/google/go-tpm v0.9.3
 	github.com/google/go-tpm-tools v0.4.4
 	github.com/google/renameio v1.0.1
 	github.com/google/uuid v1.6.0
