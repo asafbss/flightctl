@@ -15,7 +15,7 @@ require (
 	github.com/go-git/go-billy/v5 v5.5.0
 	github.com/go-git/go-git/v5 v5.12.0
 	github.com/go-openapi/swag v0.23.0
-	github.com/google/go-cmp v0.6.0
+	github.com/google/go-cmp v0.7.0
 	github.com/google/go-tpm v0.9.0
 	github.com/google/go-tpm-tools v0.4.4
 	github.com/google/renameio v1.0.1
