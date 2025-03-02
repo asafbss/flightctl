@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/RangelReale/osincli v0.0.0-20160924135400-fababb0555f2
-	github.com/ccoveille/go-safecast v1.1.0
+	github.com/ccoveille/go-safecast v1.5.0
 	github.com/containers/image/v5 v5.30.1
 	github.com/containers/storage v1.53.0
 	github.com/coreos/ignition/v2 v2.19.0
