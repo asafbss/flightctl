@@ -7,7 +7,7 @@ require (
 	github.com/ccoveille/go-safecast v1.1.0
 	github.com/containers/image/v5 v5.30.1
 	github.com/containers/storage v1.53.0
-	github.com/coreos/ignition/v2 v2.19.0
+	github.com/coreos/ignition/v2 v2.20.0
 	github.com/coreos/rpmostree-client-go v0.0.0-20240514234259-72a33e8554b6
 	github.com/creack/pty v1.1.24
 	github.com/dustin/go-humanize v1.0.1
@@ -52,8 +52,8 @@ require (
 	golang.org/x/sync v0.10.0
 	golang.org/x/sys v0.28.0
 	golang.org/x/term v0.27.0
-	google.golang.org/grpc v1.64.0
-	google.golang.org/protobuf v1.34.1
+	google.golang.org/grpc v1.64.1
+	google.golang.org/protobuf v1.34.2
 	gorm.io/driver/postgres v1.5.9
 	gorm.io/driver/sqlite v1.5.5
 	gorm.io/gorm v1.25.10
@@ -72,7 +72,7 @@ require (
 	github.com/ProtonMail/go-crypto v1.1.3 // indirect
 	github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be // indirect
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
-	github.com/aws/aws-sdk-go v1.53.5 // indirect
+	github.com/aws/aws-sdk-go v1.55.5 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/cloudflare/circl v1.3.7 // indirect
@@ -138,11 +138,11 @@ require (
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	golang.org/x/mod v0.19.0 // indirect
 	golang.org/x/net v0.33.0 // indirect
-	golang.org/x/oauth2 v0.20.0 // indirect
+	golang.org/x/oauth2 v0.23.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.23.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240513163218-0867130af1f8 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240624140628-dc46fd24d27d // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
