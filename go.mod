@@ -40,7 +40,7 @@ require (
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/pflag v1.0.6-0.20210604193023-d5e0c0615ace
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.10.0
 	github.com/valkey-io/valkey-go v1.0.48
 	github.com/vincent-petithory/dataurl v1.0.0
 	go.uber.org/mock v0.4.0
