@@ -1,11 +1,13 @@
 module github.com/flightctl/flightctl/tools
 
-go 1.21
+go 1.22
+
+toolchain go1.22.9
 
 require (
 	github.com/oapi-codegen/oapi-codegen/v2 v2.3.0
 	github.com/onsi/ginkgo/v2 v2.19.0
-	go.uber.org/mock v0.4.0
+	go.uber.org/mock v0.5.0
 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.2.0
 	google.golang.org/protobuf v1.33.0
 	gotest.tools/gotestsum v1.12.0
@@ -29,12 +31,12 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/perimeterx/marshmallow v1.1.5 // indirect
-	golang.org/x/mod v0.17.0 // indirect
+	golang.org/x/mod v0.18.0 // indirect
 	golang.org/x/sync v0.7.0 // indirect
-	golang.org/x/sys v0.20.0 // indirect
+	golang.org/x/sys v0.21.0 // indirect
 	golang.org/x/term v0.18.0 // indirect
 	golang.org/x/text v0.15.0 // indirect
-	golang.org/x/tools v0.21.0 // indirect
+	golang.org/x/tools v0.22.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
