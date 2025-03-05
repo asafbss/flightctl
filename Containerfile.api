@@ -15,8 +15,9 @@ COPY ./test test
 COPY ./Makefile .
 
 USER 0
+RUN git config --global --add safe.directory /app
 RUN make build-api
-
+    
 FROM registry.access.redhat.com/ubi9/ubi as certs
 RUN dnf update --nodocs -y  && dnf install ca-certificates tzdata --nodocs -y
 
