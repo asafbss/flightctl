@@ -15,7 +15,7 @@ import (
 	"syscall"
 
 	ign3types "github.com/coreos/ignition/v2/config/v3_4/types"
-	"github.com/google/renameio"
+	"github.com/google/renameio/v2"
 	"github.com/vincent-petithory/dataurl"
 	"k8s.io/klog/v2"
 )
