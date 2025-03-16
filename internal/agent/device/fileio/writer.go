@@ -15,7 +15,7 @@ import (
 	"syscall"
 
 	"github.com/flightctl/flightctl/api/v1alpha1"
-	"github.com/google/renameio"
+	"github.com/google/renameio/v2"
 	"github.com/samber/lo"
 	"k8s.io/klog/v2"
 )
