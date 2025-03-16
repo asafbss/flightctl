@@ -10,7 +10,7 @@ require (
 	github.com/evanphx/json-patch v5.9.0+incompatible
 	github.com/getkin/kin-openapi v0.124.0
 	github.com/gliderlabs/ssh v0.3.7
-	github.com/go-chi/chi v4.1.2+incompatible
+	github.com/go-chi/chi/v5 v5.2.1
 	github.com/go-chi/chi/v5 v5.0.12
 	github.com/go-git/go-billy/v5 v5.5.0
 	github.com/go-git/go-git/v5 v5.12.0
