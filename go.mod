@@ -1,6 +1,8 @@
 module github.com/flightctl/flightctl
 
-go 1.21
+go 1.22
+
+toolchain go1.22.9
 
 require (
 	github.com/RangelReale/osincli v0.0.0-20160924135400-fababb0555f2
@@ -50,7 +52,7 @@ require (
 	golang.org/x/sys v0.24.0
 	golang.org/x/term v0.22.0
 	google.golang.org/grpc v1.64.0
-	google.golang.org/protobuf v1.34.1
+	google.golang.org/protobuf v1.36.6
 	gorm.io/driver/postgres v1.5.9
 	gorm.io/driver/sqlite v1.5.5
 	gorm.io/gorm v1.25.10
