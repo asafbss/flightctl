@@ -1,6 +1,8 @@
 module github.com/flightctl/flightctl
 
-go 1.21
+go 1.23.0
+
+toolchain go1.23.8
 
 require (
 	github.com/RangelReale/osincli v0.0.0-20160924135400-fababb0555f2
@@ -27,7 +29,7 @@ require (
 	github.com/gorilla/websocket v1.5.3
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.1.0
 	github.com/jellydator/ttlcache/v3 v3.3.0
-	github.com/lestrrat-go/jwx/v2 v2.1.0
+	github.com/lestrrat-go/jwx/v3 v3.0.0
 	github.com/mackerelio/go-osstat v0.2.5
 	github.com/oapi-codegen/nethttp-middleware v1.0.1
 	github.com/oapi-codegen/runtime v1.1.1
@@ -47,11 +49,11 @@ require (
 	github.com/stretchr/testify v1.10.0
 	github.com/vincent-petithory/dataurl v1.0.0
 	go.uber.org/mock v0.4.0
-	golang.org/x/crypto v0.31.0
+	golang.org/x/crypto v0.36.0
 	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56
-	golang.org/x/sync v0.10.0
-	golang.org/x/sys v0.28.0
-	golang.org/x/term v0.27.0
+	golang.org/x/sync v0.12.0
+	golang.org/x/sys v0.31.0
+	golang.org/x/term v0.30.0
 	google.golang.org/grpc v1.64.0
 	google.golang.org/protobuf v1.34.1
 	gorm.io/driver/postgres v1.5.9
@@ -82,7 +84,7 @@ require (
 	github.com/coreos/vcontext v0.0.0-20230201181013-d72178a18687 // indirect
 	github.com/cyphar/filepath-securejoin v0.2.5 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
-	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.3.0 // indirect
+	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.4.0 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/emicklei/go-restful/v3 v3.9.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
@@ -115,8 +117,7 @@ require (
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/lestrrat-go/blackmagic v1.0.2 // indirect
 	github.com/lestrrat-go/httpcc v1.0.1 // indirect
-	github.com/lestrrat-go/httprc v1.0.5 // indirect
-	github.com/lestrrat-go/iter v1.0.2 // indirect
+	github.com/lestrrat-go/httprc/v3 v3.0.0-beta1 // indirect
 	github.com/lestrrat-go/option v1.0.1 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-sqlite3 v1.14.22 // indirect
@@ -139,7 +140,7 @@ require (
 	golang.org/x/mod v0.19.0 // indirect
 	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/oauth2 v0.20.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
+	golang.org/x/text v0.23.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
 	golang.org/x/tools v0.23.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240513163218-0867130af1f8 // indirect
