@@ -9,8 +9,8 @@ import (
 	"net/http"
 
 	"github.com/flightctl/flightctl/internal/auth/common"
-	"github.com/lestrrat-go/jwx/v2/jwk"
-	"github.com/lestrrat-go/jwx/v2/jwt"
+	"github.com/lestrrat-go/jwx/v3/jwk"
+	"github.com/lestrrat-go/jwx/v3/jwt"
 )
 
 type JWTAuth struct {
