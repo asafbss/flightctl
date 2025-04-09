@@ -4,7 +4,7 @@ global:
     gitserver: ""
     prometheus: ""
 registry:
-  image: docker.io/library/registry:2
+  image: docker.io/library/registry:3
   route: true
   hostName: ""
 gitserver:
