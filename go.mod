@@ -1,6 +1,8 @@
 module github.com/flightctl/flightctl
 
-go 1.21
+go 1.22
+
+toolchain go1.22.9
 
 require (
 	github.com/RangelReale/osincli v0.0.0-20160924135400-fababb0555f2
@@ -43,7 +45,7 @@ require (
 	github.com/stretchr/testify v1.9.0
 	github.com/valkey-io/valkey-go v1.0.48
 	github.com/vincent-petithory/dataurl v1.0.0
-	go.uber.org/mock v0.4.0
+	go.uber.org/mock v0.5.1
 	golang.org/x/crypto v0.25.0
 	golang.org/x/net v0.27.0
 	golang.org/x/sync v0.7.0
