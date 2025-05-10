@@ -571,7 +571,8 @@ spec:
       optional: true
     - name: netrc
       optional: true
-  taskRunTemplate: {}
+  taskRunTemplate:
+    serviceAccountName: build-pipeline-flightctl-release-worker-0-3-0
   workspaces:
   - name: git-auth
     secret:
