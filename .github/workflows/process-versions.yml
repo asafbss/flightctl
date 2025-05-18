@@ -44,8 +44,9 @@ jobs:
               platforms=$(echo "$comp" | jq -c '."build-platforms"')
               build_args=$(echo "$comp" | jq -c '."build-args"')
 
-              # Resolve tag to commit SHA (handles both lightweight and annotated tags)
+              # Resolve tag to commit SHA (fallback for lightweight or annotated tag)
               sha=$(git ls-remote "$git_url" "refs/tags/$revision^{}" | cut -f1)
+              [[ -z "$sha" ]] && sha=$(git ls-remote "$git_url" "refs/tags/$revision" | cut -f1)
 
               echo "📦 Component: $name"
               echo "  Git URL:    $git_url"
@@ -55,14 +56,16 @@ jobs:
               echo "  Platforms:  $platforms"
               echo "  Build Args: $build_args"
 
-              # Optional: Substitute the tag and SHA into build args
+              # Render build args with actual values
               rendered_args=$(echo "$build_args" | sed "s|\${GIT_TAG}|$revision|g" | sed "s|\${GIT_COMMIT}|$sha|g")
 
-              # Here you'd invoke your image builder using $rendered_args etc.
-              # echo "Rendered Build Args: $rendered_args"
+              # Example: You could invoke your build tool here
+              # ./scripts/build-image.sh --name "$name" --sha "$sha" --dockerfile "$dockerfile" --platforms "$platforms" --build-args "$rendered_args"
+
+              echo "🛠️ Rendered Args: $rendered_args"
             done
 
-            # Update hash
+            # Update state file
             jq --arg file "$filename" --arg hash "$file_hash" '. + {($file): $hash}' .version-state.json > tmp/state.json
             mv tmp/state.json .version-state.json
 
