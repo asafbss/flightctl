@@ -30,6 +30,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Fetch tags
+        run: git fetch --tags
+        
       - name: Get Commit SHA of Tag
         id: get-sha
         run: |
