@@ -43,11 +43,12 @@ jobs:
               dockerfile=$(echo "$comp" | jq -r '.dockerfile')
               platforms=$(echo "$comp" | jq -c '."build-platforms"')
               build_args=$(echo "$comp" | jq -c '."build-args"')
-              build_args=$(echo "$build_args" | sed "s|\${GIT_TAG}|$revision|g" | sed "s|\${GIT_COMMIT}|$sha|g")
 
               # Resolve tag to commit SHA
               sha=$(git ls-remote "$git_url" "refs/tags/$revision^{}" | cut -f1)
               [[ -z "$sha" ]] && sha=$(git ls-remote "$git_url" "refs/tags/$revision" | cut -f1)
+
+              build_args=$(echo "$build_args" | sed "s|\${GIT_TAG}|$revision|g" | sed "s|\${GIT_COMMIT}|$sha|g")
 
               echo "📦 Component: $name"
               echo "  Git URL:    $git_url"
