@@ -44,7 +44,7 @@ jobs:
               platforms=$(echo "$comp" | jq -c '."build-platforms"')
               build_args=$(echo "$comp" | jq -c '."build-args"')
 
-              # Resolve tag to commit SHA (fallback for lightweight or annotated tag)
+              # Resolve tag to commit SHA
               sha=$(git ls-remote "$git_url" "refs/tags/$revision^{}" | cut -f1)
               [[ -z "$sha" ]] && sha=$(git ls-remote "$git_url" "refs/tags/$revision" | cut -f1)
 
@@ -56,12 +56,8 @@ jobs:
               echo "  Platforms:  $platforms"
               echo "  Build Args: $build_args"
 
-              # Render build args with actual values
+              # Render build args
               rendered_args=$(echo "$build_args" | sed "s|\${GIT_TAG}|$revision|g" | sed "s|\${GIT_COMMIT}|$sha|g")
-
-              # Example: You could invoke your build tool here
-              # ./scripts/build-image.sh --name "$name" --sha "$sha" --dockerfile "$dockerfile" --platforms "$platforms" --build-args "$rendered_args"
-
               echo "🛠️ Rendered Args: $rendered_args"
             done
 
@@ -70,6 +66,8 @@ jobs:
             mv tmp/state.json .version-state.json
 
             CHANGED=1
+          else
+            echo "⏭️  Skipping unchanged file: $file"
           fi
         done
 
@@ -81,3 +79,4 @@ jobs:
       with:
         add: '.version-state.json'
         message: 'Update version-state.json after processing version changes'
+
