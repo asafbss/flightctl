@@ -1,0 +1,70 @@
+name: Process Version Files
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up prerequisites
+      run: |
+        mkdir -p tmp
+        touch .version-state.json
+        jq -e . .version-state.json || echo '{}' > .version-state.json
+
+    - name: Process version files
+      id: process
+      run: |
+        CHANGED=0
+        for file in versions/*.json; do
+          [[ -f "$file" ]] || continue
+          filename=$(basename "$file")
+          file_hash=$(sha256sum "$file" | cut -d ' ' -f1)
+          current_hash=$(jq -r --arg file "$filename" '.[$file] // empty' .version-state.json)
+
+          if [[ "$file_hash" != "$current_hash" ]]; then
+            echo "Processing changed file: $file"
+
+            components=$(jq -c '.components[]' "$file")
+            for comp in $components; do
+              name=$(echo "$comp" | jq -r '.name')
+              git_url=$(echo "$comp" | jq -r '.git-url')
+              revision=$(echo "$comp" | jq -r '.revision')
+
+              # Resolve tag to commit SHA
+              sha=$(git ls-remote "$git_url" "refs/tags/$revision^{}" | cut -f1)
+
+              echo "Component: $name"
+              echo "  Git URL: $git_url"
+              echo "  Tag:     $revision"
+              echo "  Commit:  $sha"
+
+              # This is where you'd invoke your image builder, e.g. buildah or skopeo or whatever
+              # For example:
+              # ./scripts/build-image.sh --name "$name" --sha "$sha" ...
+            done
+
+            # Update hash
+            jq --arg file "$filename" --arg hash "$file_hash" '. + {($file): $hash}' .version-state.json > tmp/state.json
+            mv tmp/state.json .version-state.json
+
+            CHANGED=1
+          fi
+        done
+
+        echo "CHANGED=$CHANGED" >> $GITHUB_ENV
+
+    - name: Commit updated version-state
+      if: env.CHANGED == '1'
+      uses: EndBug/add-and-commit@v9
+      with:
+        add: '.version-state.json'
+        message: 'Update version-state.json after processing version changes'
