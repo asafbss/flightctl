@@ -18,9 +18,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Install jq
-        run: sudo apt-get install -y jq
+          repository: flightctl/flightctl
+          fetch-depth: 0  # IMPORTANT: fetch full history, not shallow clone
 
       - name: Get Latest Release Tag
         id: get-tag
@@ -30,9 +29,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Fetch tags
-        run: git fetch --tags
-        
+      - name: Fetch all tags from remote
+        run: git fetch origin --tags
+
       - name: Get Commit SHA of Tag
         id: get-sha
         run: |
