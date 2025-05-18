@@ -24,6 +24,8 @@ jobs:
       id: process
       run: |
         CHANGED=0
+        mkdir -p tmp
+
         for file in versions/*.json; do
           [[ -f "$file" ]] || continue
           filename=$(basename "$file")
@@ -31,25 +33,33 @@ jobs:
           current_hash=$(jq -r --arg file "$filename" '.[$file] // empty' .version-state.json)
 
           if [[ "$file_hash" != "$current_hash" ]]; then
-            echo "Processing changed file: $file"
+            echo "🔁 Processing changed file: $file"
 
             components=$(jq -c '.components[]' "$file")
             for comp in $components; do
               name=$(echo "$comp" | jq -r '.name')
-              git_url=$(echo "$comp" | jq -r '.git-url')
+              git_url=$(echo "$comp" | jq -r '."git-url"')
               revision=$(echo "$comp" | jq -r '.revision')
+              dockerfile=$(echo "$comp" | jq -r '.dockerfile')
+              platforms=$(echo "$comp" | jq -c '."build-platforms"')
+              build_args=$(echo "$comp" | jq -c '."build-args"')
 
-              # Resolve tag to commit SHA
+              # Resolve tag to commit SHA (handles both lightweight and annotated tags)
               sha=$(git ls-remote "$git_url" "refs/tags/$revision^{}" | cut -f1)
 
-              echo "Component: $name"
-              echo "  Git URL: $git_url"
-              echo "  Tag:     $revision"
-              echo "  Commit:  $sha"
+              echo "📦 Component: $name"
+              echo "  Git URL:    $git_url"
+              echo "  Revision:   $revision"
+              echo "  Commit SHA: $sha"
+              echo "  Dockerfile: $dockerfile"
+              echo "  Platforms:  $platforms"
+              echo "  Build Args: $build_args"
 
-              # This is where you'd invoke your image builder, e.g. buildah or skopeo or whatever
-              # For example:
-              # ./scripts/build-image.sh --name "$name" --sha "$sha" ...
+              # Optional: Substitute the tag and SHA into build args
+              rendered_args=$(echo "$build_args" | sed "s|\${GIT_TAG}|$revision|g" | sed "s|\${GIT_COMMIT}|$sha|g")
+
+              # Here you'd invoke your image builder using $rendered_args etc.
+              # echo "Rendered Build Args: $rendered_args"
             done
 
             # Update hash
