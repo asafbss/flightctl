@@ -2,6 +2,8 @@ module github.com/flightctl/flightctl
 
 go 1.22
 
+toolchain go1.22.0
+
 require (
 	github.com/ccoveille/go-safecast v1.1.0
 	github.com/containers/image/v5 v5.30.1
