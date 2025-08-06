@@ -1,0 +1,24 @@
+FROM registry.access.redhat.com/ubi9-micro:9.6-1752500771 AS base
+FROM registry.access.redhat.com/ubi9/ubi:latest AS builder
+
+RUN mkdir /mnt/rootfs
+COPY --from=base / /mnt/rootfs
+
+# Backup the original repo directory (to restore later)
+RUN mv /mnt/rootfs/etc/yum.repos.d /mnt/rootfs/etc/yum.repos.d.bak
+
+# Create a symlink to the builder's repo directory
+RUN ln -s /etc/yum.repos.d /mnt/rootfs/etc/yum.repos.d
+
+# Install required packages using the hermetic repo
+RUN dnf install --installroot /mnt/rootfs --releasever 9 \
+    --setopt install_weak_deps=false \
+    --nodocs -y openssl-libs tzdata && \
+    dnf clean all --installroot /mnt/rootfs
+
+# Restore original repo directory (remove symlink)
+RUN rm /mnt/rootfs/etc/yum.repos.d && \
+    mv /mnt/rootfs/etc/yum.repos.d.bak /mnt/rootfs/etc/yum.repos.d
+
+FROM base
+COPY --from=builder /mnt/rootfs /
